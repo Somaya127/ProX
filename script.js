@@ -1,22 +1,29 @@
 // ==========================================
-// 1. CTA Button - تغيير نص الزر عند النقر
+// 1. Order Buttons - تغيير نص الأزرار عند النقر
 // ==========================================
-const ctaButton = document.getElementById('ctaButton');
+const orderButtons = document.querySelectorAll('.btn-main');
 
-ctaButton.addEventListener('click', function() {
-    // تغيير النص والمظهر
-    ctaButton.textContent = 'تمت الإضافة للسلة ✓';
-    ctaButton.classList.add('added');
-    
-    // منع النقر المتكرر
-    ctaButton.disabled = true;
-    
-    // إعادة الزر لحالته الأصلية بعد 3 ثواني
-    setTimeout(function() {
-        ctaButton.textContent = 'اشترِ الآن 🛒';
-        ctaButton.classList.remove('added');
-        ctaButton.disabled = false;
-    }, 3000);
+orderButtons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // تخزين النص الأصلي
+        const originalText = button.textContent;
+        
+        // تغيير النص والمظهر
+        button.textContent = 'تمت الإضافة للسلة ✓';
+        button.style.backgroundColor = '#10b981';
+        
+        // منع النقر المتكرر
+        button.disabled = true;
+        
+        // إعادة الزر لحالته الأصلية بعد 3 ثواني
+        setTimeout(function() {
+            button.textContent = originalText;
+            button.style.backgroundColor = '';
+            button.disabled = false;
+        }, 3000);
+    });
 });
 
 // ==========================================
